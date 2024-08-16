@@ -1,0 +1,70 @@
+.eye-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .icon-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .tooltip {
+    visibility: hidden;
+    width: 100px; /* Adjust width as needed */
+    background-color: #333; /* Adjust background color as needed */
+    color: #fff; /* Adjust text color as needed */
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 125%; /* Position the tooltip above the icon */
+    left: 50%;
+    margin-left: -60px; /* Center the tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .icon-wrapper:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .logo {
+    width: 50px;
+  }
+
+  .circle-img {
+    width: 50px; 
+    height: 50px; 
+    border-radius: 25%;
+    object-fit: contain;
+}
+
+  .custom-navbar {
+    background-color: white; /* White background */
+    border: 2px solid rgba(0, 0, 0, 0.185); /* Black border */
+    border-radius: 10px; /* Rounded corners */
+    padding: 10px; /* Padding around the navbar */
+  }
+  
+  /* Optional: Customize links inside the navbar */
+  .custom-navbar .nav-link {
+    color: black; /* Black text color */
+  }
+  
+  .custom-navbar .nav-link:hover {
+    color: gray; /* Color on hover */
+  }
+  
+  /* Optional: Adjust the brand's appearance */
+  .custom-navbar .navbar-brand {
+    color: black; /* Black text color */
+  }
+  
+  .custom-navbar .navbar-brand:hover {
+    color: gray; /* Color on hover */
+  }

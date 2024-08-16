@@ -1,23 +1,27 @@
-import { Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
-// import { logout } from "../../services/auth";
 
-export default function MainNavigation() {
-  return (
-    <>
-      <Navbar expand bg="dark" variant="dark">
-        <Navbar.Brand style={{ marginLeft: 10 }} as={Link} to="/">
-          Logo
-        </Navbar.Brand>
-        <Nav>
-          <Nav.Link as={Link} to="/login">
-            Sing in
-          </Nav.Link>
-          <Nav.Link as={Link} to="/signUp">
-            Sing up
-          </Nav.Link>
-        </Nav>
-      </Navbar>
-    </>
-  );
+import { jwtDecode } from "jwt-decode";
+import "../navigation/navigation.css";
+
+import IsLoggedOut from "./logIns/IsLoggedOut";
+import IsLoggedUser from "./logIns/IsLoggedUser";
+import IsLoggedAdmin from "./logIns/IsLoggedAdmin";
+
+
+//helper vars for checking tokens and roles
+let loggedIn = localStorage.getItem('jwt') ? jwtDecode(localStorage.getItem('jwt')) : null
+
+const loginInfo = { 
+    isAdmin: loggedIn?.role.authority === 'ROLE_ADMIN',
+    isUser: loggedIn?.role.authority === 'ROLE_USER',
+    name: loggedIn?.sub
+}
+
+export default function MainNavigation( ) {
+
+
+  return <>
+      {!loggedIn && <IsLoggedOut/>}
+      {loginInfo.isUser && <IsLoggedUser/>}
+      {loginInfo.isAdmin && <IsLoggedAdmin/>}
+  </>;
 }

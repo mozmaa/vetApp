@@ -1,8 +1,12 @@
 import { createBrowserRouter ,RouterProvider } from 'react-router-dom'
-import Login from './pages/Login/Login'
-import Home from './pages/Home/Home'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
+import SignIn from './pages/signUpIn/SignIn.jsx'
 import RootLayout from './pages/RootLayout';
+import HomePage from './pages/home/HomePage.jsx';
+import SignUp from './pages/signUpIn/SignUp.jsx';
+import ErrorPage from './pages/error/ErrorPage.jsx';
 
 
 
@@ -10,9 +14,11 @@ const router = createBrowserRouter([
     {
         path:'/',
         element: <RootLayout/>,
+        errorElement: <ErrorPage/>,
         children: [
-            {path:'/' , element: <Home/>},
-            {path: '/login', element: <Login/>}
+            {path:'/' , element: <HomePage/>},
+            {path: '/signIn', element: <SignIn/>},
+            {path: '/signUp', element: <SignUp/>}
         ]
     }
 ])

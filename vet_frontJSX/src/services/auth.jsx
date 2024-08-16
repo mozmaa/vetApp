@@ -2,7 +2,6 @@
 import TestAxios from "../apis/Axios.jsx"
 
 export const login = async (body) => {
-    console.log('body' , body)
 
     try{
         const resp = await TestAxios.post("/users/auth", body)

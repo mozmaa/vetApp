@@ -1,10 +1,14 @@
 package vetApp.web.dto;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
+
+import vetApp.enumeration.Roles;
 
 public class UserDTO {
 
@@ -23,6 +27,9 @@ public class UserDTO {
 
     @Size(min=3, max=50)
     private String lastName;
+    
+    @Enumerated(EnumType.STRING)
+    private Roles role;
 
     public Long getId() {
         return id;
@@ -64,6 +71,12 @@ public class UserDTO {
 		this.lastName = lastName;
 	}
 
+	public Roles getRole() {
+		return role;
+	}
 
+	public void setRole(Roles role) {
+		this.role = role;
+	}
 
 }

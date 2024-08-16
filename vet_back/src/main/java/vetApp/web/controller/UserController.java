@@ -144,12 +144,12 @@ public class UserController {
     @RequestMapping(path = "/auth", method = RequestMethod.POST)
     public ResponseEntity authenticateUser(@RequestBody AuthUserDTO dto) {
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword());
+                new UsernamePasswordAuthenticationToken(dto.getUserName(), dto.getPassword());
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         try {
             // Reload user details so we can generate token
-            UserDetails userDetails = userDetailsService.loadUserByUsername(dto.getUsername());
+            UserDetails userDetails = userDetailsService.loadUserByUsername(dto.getUserName());
             return ResponseEntity.ok(tokenUtils.generateToken(userDetails));
         } catch (UsernameNotFoundException e) {
             return ResponseEntity.notFound().build();

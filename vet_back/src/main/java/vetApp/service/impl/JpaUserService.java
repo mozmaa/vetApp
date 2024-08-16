@@ -43,7 +43,9 @@ public class JpaUserService implements UserService {
 
     @Override
     public User save(User user) {
-    	user.setRole(Roles.USER);
+    	if(user.getRole() == null) {
+    		user.setRole(Roles.USER);
+    	}
         return userRepository.save(user);
     }
 

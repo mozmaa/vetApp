@@ -12,9 +12,9 @@ public class AuthUserDTO {
 
     public AuthUserDTO() {}
 
-    public String getUsername() { return userName; }
+    public String getUserName() { return userName; }
 
-    public void setUsername(String userName) { this.userName = userName; }
+    public void setUserName(String userName) { this.userName = userName; }
 
     public String getPassword() { return password; }
 

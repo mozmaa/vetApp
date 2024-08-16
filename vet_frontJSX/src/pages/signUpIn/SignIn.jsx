@@ -3,7 +3,7 @@ import { Row, Col, Form, Button } from "react-bootstrap"
 import { login } from '../../services/auth.jsx'
 
 
-export default function Login () {
+export default function SignIn () {
 
     const [user, setUser] = useState({})
 
@@ -13,7 +13,7 @@ export default function Login () {
     }
 
     return(
-        <Row className="justify-content-center">
+        <Row className="justify-content-center" style={{ marginTop: 75 }}>
             <Col md={4}>
             <Form>
                 <Form.Group>
@@ -25,7 +25,7 @@ export default function Login () {
                 <Form.Control type="password" name="password" onChange={handleChange}></Form.Control>
                 </Form.Group>
             </Form>
-            <Button style={{marginTop:10}} onClick={()=>login(user)}>Login</Button>
+            <Button style={{marginTop:10}} onClick={()=>login(user)}>Sign in</Button>
             </Col>
         </Row>
     )

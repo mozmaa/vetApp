@@ -35,6 +35,7 @@ public class UserDTOToUser implements Converter<UserDTO, User> {
             entity.seteMail(userDTO.geteMail());
             entity.setFirstName(userDTO.getFirstName());
             entity.setLastName(userDTO.getLastName());
+            entity.setRole(userDTO.getRole());
         }
 
         return entity;
