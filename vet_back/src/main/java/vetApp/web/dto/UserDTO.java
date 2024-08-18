@@ -1,5 +1,8 @@
 package vetApp.web.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
@@ -30,6 +33,10 @@ public class UserDTO {
     
     @Enumerated(EnumType.STRING)
     private Roles role;
+    
+    private List<PetDTO> petDTOs = new ArrayList<>();
+    
+    private AddressDTO adressDTO;
 
     public Long getId() {
         return id;
@@ -78,5 +85,23 @@ public class UserDTO {
 	public void setRole(Roles role) {
 		this.role = role;
 	}
+
+	public List<PetDTO> getPetDTOs() {
+		return petDTOs;
+	}
+
+	public void setPetDTOs(List<PetDTO> petDTOs) {
+		this.petDTOs = petDTOs;
+	}
+
+	public AddressDTO getAdressDTO() {
+		return adressDTO;
+	}
+
+	public void setAdressDTO(AddressDTO adressDTO) {
+		this.adressDTO = adressDTO;
+	}
+	
+	
 
 }

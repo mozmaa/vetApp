@@ -1,4 +1,5 @@
 package vetApp.support;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,8 @@ import java.util.List;
 @Component
 public class UserToUserDTO implements Converter<User, UserDTO>{
 
+	@Autowired
+	private AddressToAdressDTO toDTO;
 
     @Override
     public UserDTO convert(User user) {
@@ -21,6 +24,8 @@ public class UserToUserDTO implements Converter<User, UserDTO>{
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
         userDTO.setUserName(user.getUserName());
+        userDTO.setPetDTOs(null);//convert 
+        userDTO.setAdressDTO(toDTO.convert(user.getAddress()));//convert
 
         return userDTO;
     }

@@ -3,7 +3,7 @@ import { Button, Col, Form, FormSelect, Row } from "react-bootstrap";
 import { passwordPattern } from "../../utils/validations";
 import Axios from "../../apis/Axios";
 import { useLocation } from "react-router-dom";
-import { ROLES } from "../../Data";
+import { ROLES } from "../../Data.js";
 import UserInput from "../../components/inputs/UserInput";
 import { useNavigate } from 'react-router-dom';
 

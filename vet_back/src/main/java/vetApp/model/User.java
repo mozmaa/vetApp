@@ -1,6 +1,9 @@
 package vetApp.model;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 import vetApp.enumeration.Roles;
@@ -18,10 +21,10 @@ public class User {
     @Column( unique = true, nullable = false)
     private String eMail;
 
-    @Column
+    @Column( nullable = false)
     private String firstName;
 
-    @Column
+    @Column( nullable = false)
     private String lastName;
 
     @Column(nullable = false)
@@ -29,18 +32,30 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Roles role;
+    
+    @OneToMany(mappedBy = "user" , fetch = FetchType.EAGER)
+    private List<Pet> pets = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "user" , fetch = FetchType.LAZY)
+    private List<PetPassport> passports = new ArrayList<>();
+    
+    @OneToOne
+    private Address address;
 
     public User(){
 
     }
 
-    public User(String userName, String eMail, String firstName, String lastName, String password, Roles role) {
+    public User(String userName, String eMail, String firstName, String lastName, String password, Roles role, List<Pet> pets, Address address, List<PetPassport> passports) {
         this.userName = userName;
         this.eMail = eMail;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.role = role;
+        this.pets = pets;
+        this.address = address;
+        this.passports = passports;
     }
 
     public Long getId() {
@@ -99,6 +114,23 @@ public class User {
 		this.role = role;
 	}
 
+	public List<Pet> getPets() {
+		return pets;
+	}
+
+	public void setPets(List<Pet> pets) {
+		this.pets = pets;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	//equals method where we handle nulls manually
 	@Override
     public boolean equals(Object obj) {
         if (this == obj)
