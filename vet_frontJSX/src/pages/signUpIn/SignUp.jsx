@@ -1,69 +1,66 @@
-import { useState,  } from "react";
+import { useCallback, useEffect, useState,  } from "react";
 import { Button, Col, Form, FormSelect, Row } from "react-bootstrap";
-import { passwordPattern } from "../../utils/validations";
-import Axios from "../../apis/Axios";
-import { useLocation } from "react-router-dom";
-import { ROLES } from "../../Data.js";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 import UserInput from "../../components/inputs/UserInput";
-import { useNavigate } from 'react-router-dom';
+import { ROLES } from "../../Data.js";
+import { passwordPattern } from "../../utils/validations.js";
+import { userAction } from "../../store/user_slice.jsx";
+import { registerUser } from "../../store/auth_actions.jsx";
+
 
 
 export default function SignUp() {
-  const location = useLocation();
-  const isAdmin = location.state?.isAdmin;
+  const authentication = useSelector(state => state.auth)
+  const user = useSelector ( state => state.user)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+  console.log('userState', user)
   
-  const [newUser, setNewUser] = useState({
-    validPass: true,
-    validRepPass: true,
-    role: 'USER'
-  });
+  const [isValidForm, setIsValidForm] = useState(false)
 
-  console.log(newUser)
-  
-  function handleChange(event) {
-    let target = event.target.name;
-    let value = event.target.value;
+  useEffect(() => {
+    validateForm(user);
+  }, [user]);
+ 
+  function validateForm(user) {
+    const areFieldsFilled = Object.values(user).every((value) => value !== '');
+    const isValid = areFieldsFilled && user.validPass && user.validRepPass;
+    setIsValidForm(isValid);
+  }
+
+  const handleChange = useCallback((event) => {
+    let target = event.target.name
+    let value = event.target.value
+
+    let updatedUser = {...user}
+
     if (target === "newPassword") {
-      setNewUser((prevUser) => {
-        let updatedUser = {
-          ...prevUser,
-          validPass: passwordPattern.test(value),
-          validRepPass: value === prevUser.repeatedPassword,
-          [target]: value,
-        };
-        return updatedUser;
-      });
+      updatedUser = {
+        ...updatedUser,
+        validPass: passwordPattern.test(value),
+        validRepPass: value === updatedUser.repeatedPassword,
+        [target]: value,
+      };
     } else if (target === "repeatedPassword") {
-      setNewUser((prevUser) => {
-        let updatedUser = {
-          ...prevUser,
-          validRepPass: value === prevUser.newPassword,
-          [target]: value,
-        };
-        return updatedUser;
-      });
+      updatedUser = {
+        ...updatedUser,
+        validRepPass: value === updatedUser.newPassword,
+        [target]: value,
+      };
     } else {
-      setNewUser((prevUser) => {
-        let updatedUser = { ...prevUser, [target]: value };
-        return updatedUser;
-      });
+      updatedUser = { ...updatedUser, [target]: value };
     }
-  }
 
-  function handleClick() {
-    Axios.post("/users", newUser)
-      .then((res) => {
-        console.log(res);
-        navigate('/' , {replace: true})
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Doslo je do greske");
-      });
-  }
+    console.log('user', updatedUser)
 
-  console.log(newUser.validPass)
+    dispatch(userAction.replaceUser(updatedUser))
+  }, [user, dispatch])
+
+  const register = (user, navigate) => {
+    dispatch(registerUser(user, navigate))
+  }
 
   return (
     <Row className="justify-content-center" style={{ marginTop: 75 }}>
@@ -74,9 +71,9 @@ export default function SignUp() {
           <UserInput label='Last name' targetType='text' targetName='lastName' handleChange={handleChange}/>
           <UserInput label='User name' targetType='text' targetName='userName' handleChange={handleChange}/>
           <UserInput label='eMail' targetType='email' targetName='eMail' handleChange={handleChange}/>
-          <UserInput label='Password' targetName='newPassword' validPass={newUser.validPass} handleChange={handleChange}/>
-          <UserInput label='Password' targetName='repeatedPassword' validRepPass={newUser.validRepPass} handleChange={handleChange}/>
-          {isAdmin && <Form.Group>
+          <UserInput label='Password' targetName='newPassword' validPass={user.validPass} handleChange={handleChange}/>
+          <UserInput label='Repeat Password' targetName='repeatedPassword' validRepPass={user.validRepPass} handleChange={handleChange}/>
+          {authentication.role==='ROLE_ADMIN' && <Form.Group>
                 <Form.Label>Role</Form.Label>
                 <FormSelect name="role" onChange={handleChange}>
                     <option value={'USER'}>Chose a role</option>
@@ -89,7 +86,7 @@ export default function SignUp() {
                 </FormSelect>
             </Form.Group>}
         </Form>
-        <Button style={{ marginTop: 10 }} onClick={handleClick}>
+        <Button disabled={!isValidForm} style={{ marginTop: 10 }} onClick={() => register(user, navigate)} >
           Sign up
         </Button>
       </Col>

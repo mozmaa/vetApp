@@ -23,6 +23,12 @@ public class Ambulance {
 	private String mobilePhoneNumber;
 	
 	@Column
+	private String facebookLink;
+	
+	@Column
+	private String instagramLink;
+	
+	@Column
 	private boolean closed;
 	
 	@OneToOne
@@ -78,6 +84,22 @@ public class Ambulance {
 
 	public void setClosed(boolean closed) {
 		this.closed = closed;
+	}
+	
+	public String getFacebookLink() {
+		return facebookLink;
+	}
+
+	public void setFacebookLink(String facebookLink) {
+		this.facebookLink = facebookLink;
+	}
+
+	public String getInstagramLink() {
+		return instagramLink;
+	}
+
+	public void setInstagramLink(String instagramLink) {
+		this.instagramLink = instagramLink;
 	}
 
 	public String getName() {

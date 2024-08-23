@@ -11,7 +11,7 @@
     display: inline-block;
   }
   
-  .tooltip {
+  .tooltip, .tooltip-home  {
     visibility: hidden;
     width: 100px; /* Adjust width as needed */
     background-color: #333; /* Adjust background color as needed */
@@ -20,40 +20,24 @@
     border-radius: 5px;
     padding: 5px;
     position: absolute;
-    z-index: 1;
     top: 125%; /* Position the tooltip above the icon */
     left: 50%;
     margin-left: -80px; /* Center the tooltip */
     opacity: 0;
     transition: opacity 0.3s;
+    z-index: 1050;
+    font-size: 14px;
   }
 
   .tooltip-home {
-    visibility: hidden;
-    width: 100px; /* Adjust width as needed */
-    background-color: #333; /* Adjust background color as needed */
-    color: #fff; /* Adjust text color as needed */
-    text-align: center;
-    border-radius: 5px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    top: 125%; /* Position the tooltip above the icon */
-    left: 50%;
-    margin-right: -80px; /* Center the tooltip */
-    opacity: 0;
-    transition: opacity 0.3s;
+    margin-left: -10px; /* Center the tooltip */
   }
   
-  .icon-wrapper:hover .tooltip {
+  .icon-wrapper:hover .tooltip, .icon-wrapper:hover .tooltip-home  {
     visibility: visible;
     opacity: 1;
   }
 
-  .icon-wrapper:hover .tooltip-home {
-    visibility: visible;
-    opacity: 1;
-  }
 
   .logo {
     width: 50px;
@@ -90,3 +74,20 @@
   .custom-navbar .navbar-brand:hover {
     color: gray; /* Color on hover */
   }
+
+  .sidebar {
+    position: fixed;
+    top: 10;
+    left: 0;
+    height: 100%;
+    width: 70px; /* Adjust the width as needed */
+    background-color: rgba(33 , 37, 41, 1); /* Dark theme to match the navbar */
+    z-index: 1000
+  } 
+
+  .nav {
+    --bs-nav-link-color:  rgba(255, 255, 255, 0.55);
+    --bs-nav-link-hover-color: rgba(255, 255, 255, 0.75);
+  }
+
+  

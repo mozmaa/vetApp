@@ -3,7 +3,6 @@ package vetApp.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -18,8 +17,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
 
@@ -63,21 +60,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.headers().cacheControl().disable();
-		
+
 		httpSecurity.cors();
-		
+
 		httpSecurity
 				.csrf().disable()
 				.sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and().authorizeRequests().anyRequest().permitAll();
-				/*.and()
-				.authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/api/korisnici/auth")
-					.permitAll()
-				 .antMatchers(HttpMethod.GET, "/api/filmovi")
-					 .permitAll()
-				.anyRequest().authenticated();*/
+		/*
+		 * .and()
+		 * .authorizeRequests()
+		 * .antMatchers(HttpMethod.POST, "/api/korisnici/auth")
+		 * .permitAll()
+		 * .antMatchers(HttpMethod.GET, "/api/filmovi")
+		 * .permitAll()
+		 * .anyRequest().authenticated();
+		 */
 
 		// Custom JWT based authentication
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(),
@@ -94,7 +93,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		// allow Authorization header
 		configuration.setAllowCredentials(true);
 
-		// number of seconds for how long the response to the preflight request can be cached without sending another preflight request
+		// number of seconds for how long the response to the preflight request can be
+		// cached without sending another preflight request
 		configuration.setMaxAge(Long.valueOf(3600));
 
 		configuration.setExposedHeaders(Arrays.asList("Total-Pages"));

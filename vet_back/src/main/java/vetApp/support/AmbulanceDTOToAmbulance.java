@@ -37,6 +37,8 @@ public class AmbulanceDTOToAmbulance implements Converter<AmbulanceDTO, Ambulanc
             entity.setPhoneNumber(ambulanceDTO.getPhoneNumber());
             entity.setMobilePhoneNumber(ambulanceDTO.getMobilePhoneNumber());
             entity.setAddress(toAddress.convert(ambulanceDTO.getAddressDTO()));
+            entity.setFacebookLink(ambulanceDTO.getFacebookLink());
+            entity.setInstagramLink(ambulanceDTO.getInstagramLink());
             entity.setClosed(ambulanceDTO.getClosed());
         }
 

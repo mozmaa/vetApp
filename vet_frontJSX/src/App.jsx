@@ -7,6 +7,7 @@ import RootLayout from './pages/RootLayout';
 import HomePage from './pages/home/HomePage.jsx';
 import SignUp from './pages/signUpIn/SignUp.jsx';
 import ErrorPage from './pages/error/ErrorPage.jsx';
+import Ambulances from './pages/ambulance/Ambulances.jsx';
 
 
 
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage/>,
         children: [
             {path:'/' , element: <HomePage/>},
+            {path:'/ambulances' , element: <Ambulances/>},
             {path: '/signIn', element: <SignIn/>},
             {path: '/signUp', element: <SignUp/>}
         ]

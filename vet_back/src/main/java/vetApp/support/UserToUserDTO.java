@@ -24,9 +24,11 @@ public class UserToUserDTO implements Converter<User, UserDTO>{
         userDTO.setFirstName(user.getFirstName());
         userDTO.setLastName(user.getLastName());
         userDTO.setUserName(user.getUserName());
-        userDTO.setPetDTOs(null);//convert 
-        userDTO.setAdressDTO(toDTO.convert(user.getAddress()));//convert
-
+        userDTO.setPetDTOs(null);//convert
+        if(user.getAddress() != null) {
+        	userDTO.setAdressDTO(toDTO.convert(user.getAddress()));//convert
+        }
+        
         return userDTO;
     }
 
