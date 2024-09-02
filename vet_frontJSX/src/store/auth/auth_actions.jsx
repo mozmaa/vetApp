@@ -1,5 +1,5 @@
-import { authActions } from "./authSlice";
-import { login, logout, register } from "../services/user_service";
+import { authActions } from "./auth_slice";
+import { login, logout, register } from "../../services/user_service";
 
 export const authenticateUser = (body, navigate) => {
     return async (dispatch) => {
@@ -11,7 +11,7 @@ export const authenticateUser = (body, navigate) => {
                 name: response.sub
             }));
         } catch (error) {
-            dispatch(authActions.loginFail(error.message)); 
+            dispatch(authActions.loginFail(error.message)) 
         }
     };
 };

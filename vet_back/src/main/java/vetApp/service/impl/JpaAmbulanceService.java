@@ -60,7 +60,7 @@ public class JpaAmbulanceService implements AmbulanceService {
      */
 	@Override
 	public Page<Ambulance> find(String name, String city, Boolean closed, int pageNo) {
-		return ambulanceRepository.search(name, city, closed, PageRequest.of(pageNo, 10));
+		return ambulanceRepository.search(name, city, closed, PageRequest.of(pageNo, 2));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class JpaAmbulanceService implements AmbulanceService {
 		// Mark the Ambulance as closed making it logically deleted but keeping data.
 		if(ambulance != null) {
 			ambulance.setClosed(true);
-			ambulanceRepository.save(ambulance);
+			ambulanceRepository.delete(ambulance);
 		}
 		return ambulance;
 	}

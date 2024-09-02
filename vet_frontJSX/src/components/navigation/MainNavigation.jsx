@@ -7,7 +7,6 @@ import { Fragment } from "react";
 
 function MainNavigation() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  console.log(isLoggedIn);
 
   return (
     <Fragment>

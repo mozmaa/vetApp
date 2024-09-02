@@ -1,6 +1,8 @@
 package vetApp.model;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
@@ -22,11 +24,17 @@ public class Ambulance {
 	@Column
 	private String mobilePhoneNumber;
 	
-	@Column
-	private String facebookLink;
+	@ElementCollection
+	@CollectionTable(name = "ambulance_links",  joinColumns =  @JoinColumn(name = "ambulance_id"))
+	@MapKeyColumn(name = "link_url")
+	@Column(name = "link_name")
+	Map<String, String> links = new HashMap<String, String>();
 	
-	@Column
-	private String instagramLink;
+//	@Column
+//	private String facebookLink;
+//	
+//	@Column
+//	private String instagramLink;
 	
 	@Column
 	private boolean closed;
@@ -86,24 +94,32 @@ public class Ambulance {
 		this.closed = closed;
 	}
 	
-	public String getFacebookLink() {
-		return facebookLink;
-	}
-
-	public void setFacebookLink(String facebookLink) {
-		this.facebookLink = facebookLink;
-	}
-
-	public String getInstagramLink() {
-		return instagramLink;
-	}
-
-	public void setInstagramLink(String instagramLink) {
-		this.instagramLink = instagramLink;
-	}
-
+//	public String getFacebookLink() {
+//		return facebookLink;
+//	}
+//
+//	public void setFacebookLink(String facebookLink) {
+//		this.facebookLink = facebookLink;
+//	}
+//
+//	public String getInstagramLink() {
+//		return instagramLink;
+//	}
+//
+//	public void setInstagramLink(String instagramLink) {
+//		this.instagramLink = instagramLink;
+//	}
+	
 	public String getName() {
 		return name;
+	}
+
+	public Map<String, String> getLinks() {
+		return links;
+	}
+
+	public void setLinks(Map<String, String> links) {
+		this.links = links;
 	}
 
 	public void setName(String name) {

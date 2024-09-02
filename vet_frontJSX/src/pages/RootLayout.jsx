@@ -6,7 +6,6 @@ import { Fragment } from "react";
 
 export default function RootLayout() {
   const userRole = useSelector((state) => state.auth.role);
-  console.log(userRole);
 
   return (
     <Fragment>

@@ -1,6 +1,7 @@
 package vetApp.web.dto;
 
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -24,10 +25,12 @@ public class AmbulanceDTO {
 
 	@Pattern(regexp = "^\\+381 6\\d{1}/\\d{3}-\\d{3,4}$", message = "Invalid mobile phone number")
 	private String mobilePhoneNumber;
+	
+	private Map<String, String> links;
 
-	private String facebookLink;
-
-	private String instagramLink;
+//	private String facebookLink;
+//
+//	private String instagramLink;
 
 	private Boolean closed;
 
@@ -82,21 +85,31 @@ public class AmbulanceDTO {
 	public void setAddressDTO(AddressDTO addressDTO) {
 		this.addressDTO = addressDTO;
 	}
+	
+	
 
-	public String getFacebookLink() {
-		return facebookLink;
+//	public String getFacebookLink() {
+//		return facebookLink;
+//	}
+//
+//	public void setFacebookLink(String facebookLink) {
+//		this.facebookLink = facebookLink;
+//	}
+//
+//	public String getInstagramLink() {
+//		return instagramLink;
+//	}
+//
+//	public void setInstagramLink(String instagramLink) {
+//		this.instagramLink = instagramLink;
+//	}
+
+	public Map<String, String> getLinks() {
+		return links;
 	}
 
-	public void setFacebookLink(String facebookLink) {
-		this.facebookLink = facebookLink;
-	}
-
-	public String getInstagramLink() {
-		return instagramLink;
-	}
-
-	public void setInstagramLink(String instagramLink) {
-		this.instagramLink = instagramLink;
+	public void setLinks(Map<String, String> links) {
+		this.links = links;
 	}
 
 	public Boolean getClosed() {

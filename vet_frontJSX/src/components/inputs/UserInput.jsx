@@ -53,54 +53,6 @@ function UserInput({
     </Form.Group>
   );
 
-  // const password = (
-  //   <Form.Group>
-  //     <Form.Label>{label}</Form.Label>
-  //     <div className="position-relative">
-  //       <Form.Control
-  //         type={showPassword.newPassword ? "text" : "password"}
-  //         name={targetName}
-  //         onChange={handleChange}
-  //       ></Form.Control>
-  //       <i
-  //         className={`bi ${
-  //           showPassword.newPassword ? "bi-eye-slash" : "bi-eye"
-  //         } eye-icon`}
-  //         onClick={() => togglePasswordVisibility(targetName)}
-  //       ></i>
-  //     </div>
-  //     {!validPass && (
-  //       <p style={{ color: "red" }}>
-  //         Password must be 12-20 characters long and include uppercase,
-  //         lowercase, a number, and a special character.
-  //       </p>
-  //     )}
-  //   </Form.Group>
-  // );
-
-  // const repPass = (
-  //   <Form.Group>
-  //     <Form.Label>{label}</Form.Label>
-  //     <div className="position-relative">
-  //       <Form.Control
-  //         type={showPassword.repeatedPassword ? "text" : "password"}
-  //         name="repeatedPassword"
-  //         onChange={handleChange}
-  //       ></Form.Control>
-  //       <i
-  //         className={`bi ${
-  //           showPassword.repeatedPassword ? "bi-eye-slash" : "bi-eye"
-  //         } eye-icon`}
-  //         name={targetName}
-  //         onClick={() => togglePasswordVisibility(targetName)}
-  //       ></i>
-  //     </div>
-  //     {!validRepPass && (
-  //       <p style={{ color: "red" }}>Passowrds don&apos;t match</p>
-  //     )}
-  //   </Form.Group>
-  // );
-
   if (targetName === "newPassword" || targetName === "repeatedPassword") {
     return passwordField;
   } else {

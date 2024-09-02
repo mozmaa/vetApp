@@ -29,7 +29,7 @@ import vetApp.support.AmbulanceToAmbulanceDTO;
 import vetApp.web.dto.AmbulanceDTO;
 
 @RestController
-@RequestMapping(value = "/api/ambulance", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/ambulances", produces = MediaType.APPLICATION_JSON_VALUE)
 public class AmbulanceController {
 	
 	@Autowired
@@ -52,7 +52,7 @@ public class AmbulanceController {
      * @return a ResponseEntity containing a list of AmbulanceDTOs and pagination headers.
      */
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping
     public ResponseEntity<List<AmbulanceDTO>> getAll(
             @RequestParam(required=false) String name,

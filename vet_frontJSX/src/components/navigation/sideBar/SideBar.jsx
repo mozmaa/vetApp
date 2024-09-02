@@ -7,7 +7,7 @@ export default function SideBar () {
     return (
         <div className="sidebar">
           <Nav className="flex-column">
-            <Nav.Link as={Link} to="/dashboard">
+            <Nav.Link as={Link} to="/addAmbulance">
               <NavIcons
                 wrapperClass="icon-wrapper"
                 iconClass="bi bi-building-add fs-2"

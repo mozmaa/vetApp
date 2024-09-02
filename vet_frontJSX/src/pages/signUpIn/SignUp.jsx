@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import UserInput from "../../components/inputs/UserInput";
 import { ROLES } from "../../Data.js";
 import { passwordPattern } from "../../utils/validations.js";
-import { userAction } from "../../store/user_slice.jsx";
-import { registerUser } from "../../store/auth_actions.jsx";
+import { userAction } from "../../store/user/user_slice.jsx";
+import { registerUser } from "../../store/auth/auth_actions.jsx";
 
 
 
@@ -66,7 +66,6 @@ export default function SignUp() {
     <Row className="justify-content-center" style={{ marginTop: 75 }}>
       <Col md={4}>
         <Form>
-          {/* input fields for creating user */}
           <UserInput label='First name' targetType='text' targetName='firstName' handleChange={handleChange}/>
           <UserInput label='Last name' targetType='text' targetName='lastName' handleChange={handleChange}/>
           <UserInput label='User name' targetType='text' targetName='userName' handleChange={handleChange}/>
@@ -87,7 +86,7 @@ export default function SignUp() {
             </Form.Group>}
         </Form>
         <Button disabled={!isValidForm} style={{ marginTop: 10 }} onClick={() => register(user, navigate)} >
-          Sign up
+          Register
         </Button>
       </Col>
     </Row>

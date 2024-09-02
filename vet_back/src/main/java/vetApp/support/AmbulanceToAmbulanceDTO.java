@@ -24,10 +24,9 @@ public class AmbulanceToAmbulanceDTO implements Converter<Ambulance, AmbulanceDT
 		ambulanceDTO.setName(ambulance.getName());
 		ambulanceDTO.setPhoneNumber(ambulance.getPhoneNumber());
 		ambulanceDTO.setMobilePhoneNumber(ambulance.getMobilePhoneNumber());
-		ambulanceDTO.setAddressDTO(toAddressDTO.convert(ambulance.getAddress()));
-		ambulanceDTO.setFacebookLink(ambulance.getFacebookLink());
-		ambulanceDTO.setInstagramLink(ambulance.getInstagramLink());
 		ambulanceDTO.setClosed(ambulance.isClosed());
+		ambulanceDTO.setAddressDTO(toAddressDTO.convert(ambulance.getAddress()));
+		ambulanceDTO.setLinks(ambulance.getLinks());
 		if (!ambulance.getEmployees().isEmpty()) {
 			// convert empolyyes
 		}

@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 
-
 function NavIcons ( { wrapperClass, iconClass, tooltipClass, tooltipLabel} ) {
     return (
         <>

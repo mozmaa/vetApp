@@ -1,10 +1,9 @@
 import { useState} from "react"
 import { Row, Col, Form, Button } from "react-bootstrap"
-// import { login } from '../../services/auth.jsx'
 import { useDispatch } from "react-redux"
-import {authenticateUser} from '../../store/auth_actions.jsx'
 import { useNavigate } from "react-router-dom"
 
+import {authenticateUser} from '../../store/auth/auth_actions.jsx'
 
 export default function SignIn () {
     const dispatch = useDispatch()

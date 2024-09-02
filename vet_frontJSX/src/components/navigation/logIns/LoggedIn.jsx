@@ -5,10 +5,7 @@ import { Fragment } from "react";
 
 import NavIcons from "../../icons/NavIcons";
 import logo from "../../../assets/vetAmbLogo.png.png";
-import { logoutUser } from "../../../store/auth_actions";
-
-
-
+import { logoutUser } from "../../../store/auth/auth_actions";
 
 function LoggedIn() {
   const user = useSelector(state => state.auth)
@@ -93,7 +90,7 @@ function LoggedIn() {
 
   return (
     <Fragment>
-      <Navbar expand bg="dark" variant="dark">
+      <Navbar expand bg="dark" variant="dark" style={{zIndex:1100}}>
         {visibleToAll}
         <Nav className="ms-auto">
           {role === 'ROLE_ADMIN' && signUpUserAsAdmin}
